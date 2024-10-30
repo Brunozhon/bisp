@@ -46,3 +46,55 @@ let interpreter = new Interpreter(logger);
 
 interpreter.evaluate(parser.parse());
 ```
+
+## Learn Bisp
+
+### Lesson 1: `print`
+
+In [the Bisp shell](https://brunozhon.github.io/bisp/), type this code:
+
+```lisp
+(print "Hello, world!")
+```
+
+Click "Compile!". You should end up with a result looking like this:
+
+<img width="1403" alt="Screenshot 2024-10-30 at 7 13 42 PM" src="https://github.com/user-attachments/assets/fb7c137e-0fa7-4d17-b99a-955a078eb871">
+
+To print things twice, you need to enclose the two `print` statements into another list:
+
+```lisp
+(
+  (print "Hello, world!")
+  (print "I am learning Bisp!")
+)
+```
+
+Bisp has a shortcut for doing this, which is:
+
+```lisp
+(print "Hello, world!" "I am learning Bisp!")
+```
+
+You can also use numbers in `print` statements:
+
+```lisp
+(print 1 2 3)
+```
+
+### Lesson 2: Everthing is a List
+
+Yes, just like Lisp. This means that you can print a list out like this:
+
+```lisp
+(print ("This is" "a list" "with" 5 "elements."))
+```
+
+The browser interpreter seperates the elements in commas only, which is not very helpful.
+
+You can even chain `print` statements together. This one will print `1` twice:
+
+```lisp
+(print (print 1))
+```
+
