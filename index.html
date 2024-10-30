@@ -21,7 +21,7 @@
         let input = document.getElementById("textarea").value;
         let logger = new WebLogger("output");
 
-        let scanner = new Scanner(input);
+        let scanner = new Scanner(input, logger);
         let parser = new Parser(scanner.scanTokens());
         let interpreter = new Interpreter(logger);
         interpreter.evaluate(parser.parse());

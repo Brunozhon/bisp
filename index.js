@@ -16,8 +16,9 @@ class Token {
 }
 
 class Scanner {
-    constructor(code) {
+    constructor(code, logger) {
         this.code = code;
+        this.logger = logger;
         this.tokens = [];
 
         this.start = 0;
@@ -86,7 +87,7 @@ class Scanner {
                 } else if (this.isAlpha(c)) {
                     this.identifier();
                 } else {
-                    console.error(`Error: Unknown character '${c}'`);
+                    this.logger.error(`Error: Unknown character '${c}'`);
                 }
         }
     }
@@ -95,7 +96,7 @@ class Scanner {
         while (this.peek() !== '"' && !this.isAtEnd()) this.advance();
 
         if (this.isAtEnd()) {
-            console.error("Unterminated string.");
+            this.logger.error("Error: Unterminated string.");
             return;
         }
 
@@ -256,7 +257,7 @@ class Parser {
         } else if (this.match(TokenType.IDENTIFIER)) {
             return this.identifier();
         } else {
-            return new ErrorExpr("Expected left parenthesis, string, number, or identifier.");
+            return new ErrorExpr("Error: Expected left parenthesis, string, number, or identifier.");
         }
     }
 
@@ -267,7 +268,7 @@ class Parser {
             expr.exprs.push(this.expression());
         }
 
-        if (this.peek().type !== TokenType.RPAREN) return new ErrorExpr("Unterminated list.");
+        if (this.peek().type !== TokenType.RPAREN) return new ErrorExpr("Error: Unterminated list.");
         this.advance();
 
         return expr;
@@ -324,13 +325,13 @@ class Interpreter extends Visitor {
                                 running += res;
                             }
                         } else {
-                            this.logger.error("Invalid addition.");
+                            this.logger.error("Error: Invalid addition.");
                         }
                     }
                     if (running !== undefined) array.push(running);
                     break;
                 default:
-                    this.logger.error("Unknown command '" + expr.exprs[0].value + "'.");
+                    this.logger.error("Error: Unknown command '" + expr.exprs[0].value + "'.");
                     array.push(1);
             }
         } else {

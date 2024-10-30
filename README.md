@@ -19,9 +19,9 @@ const {Scanner, Parser, Interpreter, Logger} = require("bisp.js");
 ```
 4. To compile some Bisp code, run this code snippet:
 ```js
-let scanner = new Scanner("[code goes here]");
-let parser = new Parser(scanner.scanTokens());
 let logger = new Logger();
+let scanner = new Scanner("[code goes here]", logger);
+let parser = new Parser(scanner.scanTokens());
 let interpreter = new Interpreter(logger);
 
 interpreter.evaluate(parser.parse());
@@ -39,9 +39,9 @@ interpreter.evaluate(parser.parse());
 ```
 3. To compile some Bisp code, add this code snippet into a `script` tag:
 ```js
-let scanner = new Scanner("[code goes here]");
-let parser = new Parser(scanner.scanTokens());
 let logger = new WebLogger("output");
+let scanner = new Scanner("[code goes here]", logger);
+let parser = new Parser(scanner.scanTokens());
 let interpreter = new Interpreter(logger);
 
 interpreter.evaluate(parser.parse());
@@ -90,7 +90,7 @@ Yes, just like Lisp. This means that you can print a list out like this:
 (print ("This is" "a list" "with" 5 "elements."))
 ```
 
-The browser interpreter separates the elements in commas only, which is not very helpful.
+The browser interpreter separates the elements in spaces, which could be useful.
 
 You can even chain `print` statements together. This one will print `1` twice:
 
