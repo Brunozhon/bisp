@@ -324,13 +324,13 @@ class Interpreter extends Visitor {
                                 running += res;
                             }
                         } else {
-                            console.error("Invalid addition.");
+                            this.logger.error("Invalid addition.");
                         }
                     }
                     if (running !== undefined) array.push(running);
                     break;
                 default:
-                    console.error("Unknown command '" + expr.exprs[0].value + "'.");
+                    this.logger.error("Unknown command '" + expr.exprs[0].value + "'.");
                     array.push(1);
             }
         } else {
@@ -345,7 +345,7 @@ class Interpreter extends Visitor {
         return expr.value; // #TODO: add variables
     }
     visitErrorExpr(expr) {
-        console.error(expr.message);
+        this.logger.error(expr.message);
         return expr.message;
     }
 
@@ -358,6 +358,10 @@ class Logger {
     log(message) {
         console.log(message);
     }
+
+    error(message) {
+        console.error(message);
+    }
 }
 
 class WebLogger extends Logger {
@@ -369,6 +373,12 @@ class WebLogger extends Logger {
     }
 
     log(message) {
-        document.getElementById(this.id).innerHTML += message + "<br>";
+        let msg = message;
+        if (msg instanceof Array) msg = msg.join(" ");
+        document.getElementById(this.id).innerHTML += msg + "<br>";
+    }
+
+    error(message) {
+        document.getElementById(this.id).innerHTML += "<b style='color: red;'>" + message + "</b><br>";
     }
 }
