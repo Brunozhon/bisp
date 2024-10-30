@@ -287,6 +287,11 @@ class Parser {
 }
 
 class Interpreter extends Visitor {
+    constructor(logger) {
+        super();
+        this.logger = logger;
+    }
+
     visitNumberExpr(expr) {
         return expr.value;
     }
@@ -304,7 +309,7 @@ class Interpreter extends Visitor {
                     for (let e of expr.exprs.slice(1)) {
                         let res = this.evaluate(e);
                         if (res instanceof Array && res.length === 1) res = res[0];
-                        console.log(res);
+                        this.logger.log(res);
                         array.push(res);
                     }
                     break;
@@ -346,5 +351,22 @@ class Interpreter extends Visitor {
 
     evaluate(expr) {
         return expr.accept(this);
+    }
+}
+
+class Logger {
+    log(message) {
+        console.log(message);
+    }
+}
+
+class WebLogger extends Logger {
+    constructor(id) {
+        super();
+        this.id = id;
+    }
+
+    log(message) {
+        document.getElementById(this.id).innerHTML += message + "<br>";
     }
 }
