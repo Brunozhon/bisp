@@ -348,14 +348,3 @@ class Interpreter extends Visitor {
         return expr.accept(this);
     }
 }
-
-let scanner = new Scanner(`(print (add "Hello," " " "world!"))`);
-let scannerTokens = scanner.scanTokens();
-console.log(scannerTokens);
-
-let parser = new Parser(scannerTokens);
-let parserExpr = parser.parse()
-console.log(parserExpr);
-
-let interpreter = new Interpreter();
-interpreter.evaluate(parserExpr);
