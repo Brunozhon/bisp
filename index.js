@@ -364,6 +364,8 @@ class WebLogger extends Logger {
     constructor(id) {
         super();
         this.id = id;
+
+        document.getElementById(this.id).innerHTML = "";
     }
 
     log(message) {

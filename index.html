@@ -12,18 +12,20 @@
     <textarea class="form-control" placeholder="Type some code!" id="textarea" style="height: 200px"></textarea>
     <label for="textarea">Bisp code goes here</label>
 </div>
-<button type="button" class="btn btn-success">Compile!</button>
+<button type="button" class="btn btn-success" id="compile">Compile!</button>
 <p id="output"></p>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script src="index.js"></script>
 <script>
-    let input = document.getElementById("textarea").value;
-    let logger = new WebLogger("output");
+    document.getElementById("compile").addEventListener("click", (e) => {
+        let input = document.getElementById("textarea").value;
+        let logger = new WebLogger("output");
 
-    let scanner = new Scanner(input);
-    let parser = new Parser(scanner.scanTokens());
-    let interpreter = new Interpreter(logger);
-    interpreter.evaluate(parser.parse());
+        let scanner = new Scanner(input);
+        let parser = new Parser(scanner.scanTokens());
+        let interpreter = new Interpreter(logger);
+        interpreter.evaluate(parser.parse());
+    });
 </script>
 </body>
 </html>
