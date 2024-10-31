@@ -349,6 +349,42 @@ class Interpreter extends Visitor {
                     if (running !== undefined) array.push(running);
                     break;
                 }
+                case "mult":
+                case "multiply": {
+                    let running;
+                    for (let e of expr.exprs.slice(1)) {
+                        let res = this.evaluate(e);
+                        if (typeof res == "number") {
+                            if (running === undefined) {
+                                running = res;
+                            } else {
+                                running *= res;
+                            }
+                        } else {
+                            this.logger.error("Error: Invalid multiplication.");
+                        }
+                    }
+                    if (running !== undefined) array.push(running);
+                    break;
+                }
+                case "div":
+                case "divide": {
+                    let running;
+                    for (let e of expr.exprs.slice(1)) {
+                        let res = this.evaluate(e);
+                        if (typeof res == "number") {
+                            if (running === undefined) {
+                                running = res;
+                            } else {
+                                running /= res;
+                            }
+                        } else {
+                            this.logger.error("Error: Invalid division.");
+                        }
+                    }
+                    if (running !== undefined) array.push(running);
+                    break;
+                }
                 default:
                     this.logger.error("Error: Unknown command '" + expr.exprs[0].value + "'.");
                     array.push(1);

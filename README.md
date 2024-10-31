@@ -1,6 +1,6 @@
 # Bisp
 
-A Lisp-like programming language created in under 400 lines of code.
+A Lisp-like programming language created in under 500 lines of code.
 
 ## How to install
 
@@ -116,3 +116,20 @@ Note that subtraction follows this rule:
 a - b - c - d - ... - z
 ```
 
+### Lesson 4: Multiplication and Division
+
+Multiplication and division use `mult` and `div`, respectively. If you think `mult` should be `mul`, "`mul`" over it. As usual, `mult` and `div` can be written as `multiply` and `divide` if you have extra time.
+
+```lisp
+(
+    (print (mult 2 3))
+    (print (div 6 2))
+)
+```
+
+Note that division follows this rule, just like subtraction:
+
+```
+(div a b c d ... z)
+a / b / c / d / ... / z
+```
