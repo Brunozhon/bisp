@@ -237,3 +237,7 @@ Replace the `temp` variable with the appropriate case. In other words, for case 
 
 The result printed out should be `212`. Here is an example of running a test case:
 
+<img width="1403" alt="Screenshot 2024-10-30 at 11 12 40 PM" src="https://github.com/user-attachments/assets/18c2bbfb-013f-462b-b251-8a9024459afb">
+
+
+
