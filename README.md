@@ -182,3 +182,29 @@ And here's an example with all four operations.
     (print (get divToThis))
 )
 ```
+
+### Real Life Example 1: Fahrenheit to Celsius
+
+The formula is `C = (F - 32) * 5/9`. Let's replicate that in Bisp.
+
+```lisp
+(
+    (set temp 32)
+    (set temp (sub (get temp) 32))
+    (set frac (div 5 9))
+    (set temp (mult (get temp) (get frac)))
+    (print (get temp))
+)
+```
+
+And for Celsius to Fahrenheit, which the formula is `F = (C * 9/5) + 32`, you can do this:
+
+```lisp
+(
+    (set temp 0)
+    (set frac (div 5 9))
+    (set temp (mult (get temp) (get frac)))
+    (set temp (add (get temp) 32))
+    (print (get temp))
+)
+```

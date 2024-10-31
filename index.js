@@ -401,6 +401,7 @@ class Interpreter extends Visitor {
 
                         if (slice.length === 1) {
                             slice = slice[0];
+                            if (slice instanceof Array && (slice.length === 1 || slice.length === 0)) slice = slice[0];
                             array.push(slice);
                         } else {
                             array.push(...slice);
