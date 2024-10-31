@@ -145,12 +145,40 @@ It is now time to introduce variables. You can use the `set` operator to set a v
 )
 ```
 
-You can change a variable by doing this:
+You can change a variable by simply wrapping the function you want to call around `set` and `get` like this:
 
 ```lisp
 (
     (set addToThis 1)
     (set addToThis (add (get addToThis) 1))
     (print (get addToThis))
+)
+```
+
+Here's a closer look:
+
+```lisp
+(set addToThis (add (get addToThis) 1))
+```
+
+And here's an example with all four operations.
+
+```lisp
+(
+    (set addToThis 1)
+    (set addToThis (add (get addToThis) 1))
+    (print (get addToThis))
+    
+    (set subToThis 3)
+    (set subToThis (sub (get subToThis) 2))
+    (print (get subToThis))
+    
+    (set multToThis 3)
+    (set multToThis (mult (get multToThis) 2))
+    (print (get multToThis))
+    
+    (set divToThis 6)
+    (set divToThis (div (get divToThis) 2))
+    (print (get divToThis))
 )
 ```
