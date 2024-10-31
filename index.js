@@ -393,12 +393,20 @@ class Interpreter extends Visitor {
                     }
 
                     if (expr.exprs[1] instanceof IdentifierExpr || expr.exprs[1] instanceof StringExpr) {
-                        this.variables[expr.exprs[1].value] = expr.exprs.slice(2).map(t => t.value);
-                        return expr.exprs.slice(2).map(t => t.value);
+                        let slice = expr.exprs.slice(2).map(t => t.value)
+
+                        if (slice.length === 1) {
+                            slice = slice[0];
+                            array.push(slice);
+                        } else {
+                            array.push(...slice);
+                        }
+                        this.variables[expr.exprs[1].value] = slice;
                     } else {
                         this.logger.error("Variable name must be string or identifier.");
                         return [];
                     }
+                    break;
                 case "get":
                     if (expr.exprs.length < 2) {
                         this.logger.error("Error: Insufficient amount of parameters.");

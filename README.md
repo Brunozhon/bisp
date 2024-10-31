@@ -144,3 +144,13 @@ It is now time to introduce variables. You can use the `set` operator to set a v
     (print (get theAnswerToLifeTheUniverseAndEverything))
 )
 ```
+
+You can change a variable by doing this:
+
+```lisp
+(
+    (set addToThis 1)
+    (set addToThis (add (get addToThis) 1))
+    (print (get addToThis))
+)
+```
