@@ -405,7 +405,7 @@ class Interpreter extends Visitor {
                         return [];
                     }
 
-                    let value = this.variables[expr.exprs[1]].value;
+                    let value = this.variables[expr.exprs[1].value];
                     if (value === undefined) return [];
                     array.push(value);
                     break;
