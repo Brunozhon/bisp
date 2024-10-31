@@ -208,3 +208,32 @@ And for Celsius to Fahrenheit, which the formula is `F = (C * 9/5) + 32`, you ca
     (print (get temp))
 )
 ```
+
+Here are a few test cases you can try out for these examples:
+
+#### °F to °C
+
+- 32°F (result: 0°C)
+- 212°F (result: 100°C)
+
+#### °C to °F
+
+- 0°C (result: 32°C)
+- 100°C (result: 212°C)
+
+#### How do you even run these test cases?
+
+Replace the `temp` variable with the appropriate case. In other words, for case #2 of °F to °C, you would do:
+
+```lisp
+(
+    (set temp 212)
+    (set temp (sub (get temp) 32))
+    (set frac (div 5 9))
+    (set temp (mult (get temp) (get frac)))
+    (print (get temp))
+)
+```
+
+The result printed out should be `212`. Here is an example of running a test case:
+
