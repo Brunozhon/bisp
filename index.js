@@ -314,7 +314,7 @@ class Interpreter extends Visitor {
                         array.push(res);
                     }
                     break;
-                case "add":
+                case "add": {
                     let running;
                     for (let e of expr.exprs.slice(1)) {
                         let res = this.evaluate(e);
@@ -330,6 +330,24 @@ class Interpreter extends Visitor {
                     }
                     if (running !== undefined) array.push(running);
                     break;
+                }
+                case "sub":
+                case "subtract": {
+                    let running;
+                    for (let e of expr.exprs.slice(1)) {
+                        let res = this.evaluate(e);
+                        if (typeof res == "number") {
+                            if (running === undefined) {
+                                running = res;
+                            } else {
+                                running -= res;
+                            }
+                        } else {
+                            this.logger.error("Error: Invalid subtraction.");
+                        }
+                    }
+                    break;
+                }
                 default:
                     this.logger.error("Error: Unknown command '" + expr.exprs[0].value + "'.");
                     array.push(1);
