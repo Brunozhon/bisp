@@ -202,7 +202,7 @@ And for Celsius to Fahrenheit, which the formula is `F = (C * 9/5) + 32`, you ca
 ```lisp
 (
     (set temp 0)
-    (set frac (div 5 9))
+    (set frac (div 9 5))
     (set temp (mult (get temp) (get frac)))
     (set temp (add (get temp) 32))
     (print (get temp))
