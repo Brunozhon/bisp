@@ -346,6 +346,7 @@ class Interpreter extends Visitor {
                             this.logger.error("Error: Invalid subtraction.");
                         }
                     }
+                    if (running !== undefined) array.push(running);
                     break;
                 }
                 default:
@@ -375,7 +376,9 @@ class Interpreter extends Visitor {
 
 class Logger {
     log(message) {
-        console.log(message);
+        let msg = message;
+        if (msg instanceof Array) msg = msg.join(" ");
+        console.log(msg);
     }
 
     error(message) {

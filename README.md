@@ -65,8 +65,8 @@ To print things twice, you need to enclose the two `print` statements into anoth
 
 ```lisp
 (
-  (print "Hello, world!")
-  (print "I am learning Bisp!")
+    (print "Hello, world!")
+    (print "I am learning Bisp!")
 )
 ```
 
@@ -96,5 +96,23 @@ You can even chain `print` statements together. This one will print `1` twice:
 
 ```lisp
 (print (print 1))
+```
+
+### Lesson 3: Addition and Subtraction
+
+Addition and subtraction use `add` and `sub`, respectively. If you have a bit more time on your hands, you can use `subtract` instead of `sub`.
+
+```lisp
+(
+    (print (add 1 2))
+    (print (sub 3 2))
+)
+```
+
+Note that subtraction follows this rule:
+
+```
+(sub a b c d ... z)
+a - b - c - d - ... - z
 ```
 
