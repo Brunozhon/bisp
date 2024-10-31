@@ -24,7 +24,6 @@ class Scanner {
         this.start = 0;
         this.current = 0;
         this.line = 1;
-        this.variables = {};
     }
 
     isDigit(c) {
@@ -292,6 +291,7 @@ class Interpreter extends Visitor {
     constructor(logger) {
         super();
         this.logger = logger;
+        this.variables = {};
     }
 
     visitNumberExpr(expr) {
