@@ -319,6 +319,7 @@ class Interpreter extends Visitor {
                     let running;
                     for (let e of expr.exprs.slice(1)) {
                         let res = this.evaluate(e);
+                        if (res instanceof Array && res.length === 1) res = res[0];
                         if (typeof res == "number" || typeof res == "string") {
                             if (running === undefined) {
                                 running = res;
@@ -337,6 +338,7 @@ class Interpreter extends Visitor {
                     let running;
                     for (let e of expr.exprs.slice(1)) {
                         let res = this.evaluate(e);
+                        if (res instanceof Array && res.length === 1) res = res[0];
                         if (typeof res == "number") {
                             if (running === undefined) {
                                 running = res;
@@ -355,6 +357,7 @@ class Interpreter extends Visitor {
                     let running;
                     for (let e of expr.exprs.slice(1)) {
                         let res = this.evaluate(e);
+                        if (res instanceof Array && res.length === 1) res = res[0];
                         if (typeof res == "number") {
                             if (running === undefined) {
                                 running = res;
@@ -373,6 +376,7 @@ class Interpreter extends Visitor {
                     let running;
                     for (let e of expr.exprs.slice(1)) {
                         let res = this.evaluate(e);
+                        if (res instanceof Array && res.length === 1) res = res[0];
                         if (typeof res == "number") {
                             if (running === undefined) {
                                 running = res;
@@ -393,10 +397,11 @@ class Interpreter extends Visitor {
                     }
 
                     if (expr.exprs[1] instanceof IdentifierExpr || expr.exprs[1] instanceof StringExpr) {
-                        let slice = expr.exprs.slice(2).map(t => t.value)
+                        let slice = expr.exprs.slice(2).map(t => this.evaluate(t))
 
                         if (slice.length === 1) {
                             slice = slice[0];
+                            console.log(slice);
                             array.push(slice);
                         } else {
                             array.push(...slice);
