@@ -133,3 +133,14 @@ Note that division follows this rule, just like subtraction:
 (div a b c d ... z)
 a / b / c / d / ... / z
 ```
+
+### Lesson 5: Variables
+
+It is now time to introduce variables. You can use the `set` operator to set a variable, and the `get` operator to get a variable.
+
+```lisp
+(
+    (set theAnswerToLifeTheUniverseAndEverything 42)
+    (print (get theAnswerToLifeTheUniverseAndEverything))
+)
+```

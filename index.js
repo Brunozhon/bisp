@@ -24,6 +24,7 @@ class Scanner {
         this.start = 0;
         this.current = 0;
         this.line = 1;
+        this.variables = {};
     }
 
     isDigit(c) {
@@ -385,6 +386,29 @@ class Interpreter extends Visitor {
                     if (running !== undefined) array.push(running);
                     break;
                 }
+                case "set":
+                    if (expr.exprs.length < 3) {
+                        this.logger.error("Error: Insufficient amount of parameters.");
+                        return [];
+                    }
+
+                    if (expr.exprs[1] instanceof IdentifierExpr || expr.exprs[1] instanceof StringExpr) {
+                        this.variables[expr.exprs[1].value] = expr.exprs.slice(2).map(t => t.value);
+                        return expr.exprs.slice(2).map(t => t.value);
+                    } else {
+                        this.logger.error("Variable name must be string or identifier.");
+                        return [];
+                    }
+                case "get":
+                    if (expr.exprs.length < 2) {
+                        this.logger.error("Error: Insufficient amount of parameters.");
+                        return [];
+                    }
+
+                    let value = this.variables[expr.exprs[1]].value;
+                    if (value === undefined) return [];
+                    array.push(value);
+                    break;
                 default:
                     this.logger.error("Error: Unknown command '" + expr.exprs[0].value + "'.");
                     array.push(1);
